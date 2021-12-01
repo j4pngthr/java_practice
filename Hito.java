@@ -5,7 +5,8 @@ public class Hito {
     p1.name = "name";
     p1.age = 20;
 
-    p1.show();
+    int temp = p1.getAge();
+    System.out.println("age is " + temp);
   }
 }
 
@@ -16,5 +17,9 @@ class Person {
   void show() { // クラスに入れたら使い回せる
     System.out.println("p1.name = " + name);
     System.out.println("p1.age = " + age);
+  }
+
+  int getAge() {
+    return age;
   }
 }
