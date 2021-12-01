@@ -1,25 +1,29 @@
+import java.io.*;
+
 public class Hito {
-  public static void main(String[] args) {
-    Person p1 = new Person();
+  public static void main(String[] args) throws IOException {
+    Circle c = new Circle();
 
-    p1.name = "name";
-    p1.age = 20;
+    System.out.println("半径の値を入力してください．");
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    int r = Integer.parseInt(str);
+    c.setR(r);
 
-    int temp = p1.getAge();
-    System.out.println("age is " + temp);
+    System.out.println("面積は，" + c.calcArea() + "です．");
+    System.out.println("円周は，" + c.calcCircuit() + "です．");
   }
 }
 
-class Person {
-  String name;
-  int age;
-
-  void show() { // クラスに入れたら使い回せる
-    System.out.println("p1.name = " + name);
-    System.out.println("p1.age = " + age);
+class Circle {
+  int r;
+  double calcArea() {
+    return Math.PI * r * r;
   }
-
-  int getAge() {
-    return age;
+  double calcCircuit() {
+    return 2 * Math.PI * r;
+  }
+  void setR(int r) {
+    this.r = r;
   }
 }
