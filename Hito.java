@@ -5,12 +5,16 @@ public class Hito {
     p1.name = "name";
     p1.age = 20;
 
-    System.out.println("p1.name = " + p1.name);
-    System.out.println("p1.age = " + p1.age);
+    p1.show();
   }
 }
 
 class Person {
   String name;
   int age;
+
+  void show() { // クラスに入れたら使い回せる
+    System.out.println("p1.name = " + name);
+    System.out.println("p1.age = " + age);
+  }
 }
