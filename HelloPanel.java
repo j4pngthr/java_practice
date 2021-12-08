@@ -11,7 +11,7 @@ public class HelloPanel extends JPanel {
 
     frame.getContentPane().add(app);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setBounds(0, 0, 300, 300); // displayにおける座標，幅，高さ
+    frame.setBounds(0, 0, 255, 255); // displayにおける座標，幅，高さ
     frame.setTitle("FRAME タイトル");
     frame.setVisible(true);
   }
@@ -29,12 +29,17 @@ public class HelloPanel extends JPanel {
     // int y[] = { 50, 50, 20 };
     // g.fillPolygon(x, y, 3);
 
-    g.setColor(new Color(0, 0, 0));
-    for (int i = 0; i < 3; ++i) {
-      for (int j = 0; j < 3; ++j) {
-        if ((i + j) % 2 != 0) continue;
-        g.fillRect(100 * i, 100 * j, 100, 100);
-      }
+    // g.setColor(new Color(0, 0, 0));
+    // for (int i = 0; i < 3; ++i) {
+    //   for (int j = 0; j < 3; ++j) {
+    //     if ((i + j) % 2 != 0) continue;
+    //     g.fillRect(100 * i, 100 * j, 100, 100);
+    //   }
+    // }
+
+    for (int i = 0; i < 255; ++i) {
+      g.setColor(new Color(0, 0, i));
+      g.drawLine(i, 0, i, 255);
     }
   }
 }
