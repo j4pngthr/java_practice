@@ -38,14 +38,26 @@ class drawFigureFrame extends JFrame implements ActionListener {
     contentPane.add(p, BorderLayout.CENTER);
   }
 
-  public void paintLabel() {
+  public void paint(Graphics g) {
     if (shape_id == 1) {
-      lb1.setText("triangle");
+      g.setColor(new Color(0, 0, 255));
+      int x[] = { (400 + 100) / 2, 100, 400 }; // この3点で三角形
+      int y[] = { 100, 400, 400 };
+      g.fillPolygon(x, y, 3);
     } else if (shape_id == 2) {
-      lb1.setText("square");
+      g.setColor(new Color(0, 255, 0));
+      g.fillRect(100, 100, 300, 300);
     } else {
-      lb1.setText("circle");
+      g.setColor(new Color(255, 0, 0));
+      g.drawOval(100, 100, 300, 300); // 円を描く, x, y, width, height
     }
+  }
+
+  public void clear() {
+    Graphics g = getGraphics();
+    g.setColor(getBackground());
+    g.fillRect(0, 99, 600, 301);
+    g.dispose();
   }
 
   public void actionPerformed(ActionEvent ae) {
@@ -58,6 +70,10 @@ class drawFigureFrame extends JFrame implements ActionListener {
     } else {
       shape_id = 3;
     }
-    paintLabel();
+    clear();
+    repaint();
   }
 }
+
+// http://www.ibe.kagoshima-u.ac.jp/edu/ProgramingJava/Event/s2.html
+// https://ja.stackoverflow.com/questions/20962/repaint%e3%81%97%e3%81%a6%e3%82%82paintcomponent%e3%81%8c%e5%91%bc%e3%81%b0%e3%82%8c%e3%81%aa%e3%81%84
