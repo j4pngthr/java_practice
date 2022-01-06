@@ -40,7 +40,7 @@ public class calcFrame extends JFrame implements ActionListener {
     bt.addActionListener(this);
     p.add(bt);
 
-    Container contentPane = getContentPane();
+    Container contentPane = getContentPane(); // ないと何も表示されない
     contentPane.add(p, BorderLayout.CENTER);
   }
 
