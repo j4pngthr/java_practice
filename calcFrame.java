@@ -45,15 +45,13 @@ public class calcFrame extends JFrame implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent ae) { // ActionListener読んだらいる
-    if (ae.getSource() == bt) {
-      String str1 = box1.getText();
-      int a = Integer.parseInt(str1);
+    String str1 = box1.getText();
+    int a = Integer.parseInt(str1);
 
-      String str2 = box2.getText();
-      int b = Integer.parseInt(str2);
+    String str2 = box2.getText();
+    int b = Integer.parseInt(str2);
 
-      String str3 = Integer.toString(a + b);
-      box3.setText(str3);
-    }
+    String str3 = Integer.toString(a + b);
+    box3.setText(str3);
   }
 }
