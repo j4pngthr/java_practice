@@ -18,12 +18,10 @@ public class drawCircleFrame extends JFrame implements ActionListener {
 
   drawCircleFrame() { // public void init()の代わり
     JPanel p = new JPanel(); // Appletの代わり
-    this.add(p, BorderLayout.CENTER);
+    this.add(p, BorderLayout.CENTER); // Containerの代わり
     box1 = new JTextField(5);
     p.add(box1);
     box1.addActionListener(this);
-    // Container contentPane = getContentPane(); // ないと何も表示されない
-    // contentPane.add(p, BorderLayout.CENTER);
   }
 
   public void actionPerformed(ActionEvent ae) { // ActionListener読んだらいる
