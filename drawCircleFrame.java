@@ -27,8 +27,11 @@ public class drawCircleFrame extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent ae) { // ActionListener読んだらいる
     String str1 = box1.getText();
     a = Integer.parseInt(str1);
-    // clear();
-    repaint();
+    clear();
+    // repaint();
+
+    Graphics g = getGraphics();
+    g.drawOval(300 - a, 200 - a, 2 * a, 2 * a);
   }
 
   public void clear() {
@@ -38,7 +41,7 @@ public class drawCircleFrame extends JFrame implements ActionListener {
     g.dispose();
   }
 
-  public void paint(Graphics g) {
-    g.drawOval(300 - a, 200 - a, 2 * a, 2 * a);
-  }
+  // public void paint(Graphics g) {
+  //   g.drawOval(300 - a, 200 - a, 2 * a, 2 * a);
+  // }
 }
