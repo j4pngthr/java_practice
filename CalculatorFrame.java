@@ -34,43 +34,83 @@ class CalculatorFrame extends JFrame implements ActionListener {
     contentPane.add(p, BorderLayout.CENTER);
   }
 
-  int ans = 0, cur = 0;
-
+  char cs[];
   public void actionPerformed(ActionEvent ae) { // ActionListener読んだらいる
     String str = box.getText();
-    char[] cs = str.toCharArray();
-    char bef_opr = '+';
-
-    for (int i = 0; i < cs.length; ++i) {
-      char c = cs[i];
-      if (c == '+'|| c == '-' || c == '*' || c == '/') {
-        if (bef_opr == '+') ans += cur;
-        else if (bef_opr == '-') ans -= cur;
-        else if (bef_opr == '*') ans *= cur;
-        else if (bef_opr == '/') ans /= cur;
-        cur = 0;
-
-        bef_opr = c;
-      } else if ('0' <= c && c <= '9') {
-        int num = c - '0';
-        if (i != 0 && '0' <= cs[i - 1] && cs[i - 1] <= '9') {
-          cur *= 10;
-        }
-        cur += num;
-      }
-    }
+    cs = str.toCharArray();
 
     if (ae.getSource() == bt) {
-      if (bef_opr == '+') ans += cur;
-      else if (bef_opr == '-') ans -= cur;
-      else if (bef_opr == '*') ans *= cur;
-      else if (bef_opr == '/') ans /= cur;
-      cur = 0;
-      bef_opr = '+';
-
-      String _ans = Integer.toString(ans);
-      box2.setText(_ans);
-      ans = 0;
+      itr = 0;
+      String ans = Integer.toString(expr());
+      box2.setText(ans);
     }
+  }
+
+  int itr = 0;
+
+  int expr() {
+    int ret = term();
+    while(true) {
+      if (itr >= cs.length) break;
+
+      char c = cs[itr];
+      if (c == '+') {
+        ++itr; // 数字を読む
+        ret += term();
+      } else if (c == '-') {
+        ++itr;
+        ret -= term();
+      } else {
+        break;
+      }
+    }
+    return ret;
+  }
+
+  int term() {
+    int ret = factor();
+    while(true) {
+      if (itr >= cs.length) break;
+
+      char c = cs[itr];
+      if (c == '*') {
+        ++itr;
+        ret *= factor();
+      } else if (c == '/') {
+        ++itr;
+        ret /= factor();
+      } else {
+        break;
+      }
+    }
+    return ret;
+  }
+
+  int factor() {
+    int ret = 0;
+
+    char c = cs[itr];
+    if (c == '(' || c == ')') {
+      ++itr; // '('の次
+      ret = expr();
+      ++itr; // ')'の次
+    } else if (c >= '0' && c <= '9') {
+      ret = c - '0';
+      while (true) {
+        ++itr;
+        if (itr >= cs.length) break;
+
+        c = cs[itr];
+        if (c >= '0' && c <= '9') {
+          ret *= 10;
+          ret += c - '0';
+        } else {
+          break;
+        }
+      }
+    } else {
+
+    }
+    return ret;
   }
 }
