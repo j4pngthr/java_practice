@@ -37,6 +37,7 @@ class CalculatorFrame extends JFrame implements ActionListener {
   char cs[];
   public void actionPerformed(ActionEvent ae) { // ActionListener読んだらいる
     String str = box.getText();
+    if (str.substring(0, 1) == "-") str = '0' + str;
     cs = str.toCharArray();
 
     if (ae.getSource() == bt) {
