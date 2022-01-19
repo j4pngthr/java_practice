@@ -42,15 +42,15 @@ class CalculatorFrame extends JFrame implements ActionListener {
 
     if (ae.getSource() == bt) {
       itr = 0;
-      String ans = Integer.toString(expr());
+      String ans = Double.toString(expr());
       box2.setText(ans);
     }
   }
 
   int itr = 0;
 
-  int expr() {
-    int ret = term();
+  double expr() {
+    double ret = term();
     while(true) {
       if (itr >= cs.length) break;
 
@@ -68,8 +68,8 @@ class CalculatorFrame extends JFrame implements ActionListener {
     return ret;
   }
 
-  int term() {
-    int ret = factor();
+  double term() {
+    double ret = factor();
     while(true) {
       if (itr >= cs.length) break;
 
@@ -80,6 +80,9 @@ class CalculatorFrame extends JFrame implements ActionListener {
       } else if (c == '/') {
         ++itr;
         ret /= factor();
+      } else if (c == '^') {
+        ++itr;
+        ret = Math.pow(ret, factor());
       } else {
         break;
       }
@@ -87,8 +90,8 @@ class CalculatorFrame extends JFrame implements ActionListener {
     return ret;
   }
 
-  int factor() {
-    int ret = 0;
+  double factor() {
+    double ret = 0;
 
     char c = cs[itr];
     if (c == '(' || c == ')') {
