@@ -100,6 +100,9 @@ class CalculatorFrame extends JFrame implements ActionListener {
       ++itr; // ')'の次
     } else if (c >= '0' && c <= '9') {
       ret = c - '0';
+      String str = "";
+      str += c;
+
       while (true) {
         ++itr;
         if (itr >= cs.length) break;
@@ -108,7 +111,18 @@ class CalculatorFrame extends JFrame implements ActionListener {
         if (c >= '0' && c <= '9') {
           ret *= 10;
           ret += c - '0';
+        } else if (c == '.') {
+
         } else {
+          break;
+        }
+        str += c;
+      }
+
+      char[] cs = str.toCharArray();
+      for (int i = 0; i < cs.length; ++i) {
+        if (cs[i] == '.') {
+          ret /= Math.pow(10, cs.length - i - 1);
           break;
         }
       }
